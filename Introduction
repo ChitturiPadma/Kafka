@@ -1,3 +1,15 @@
 
 Kafka is a publish subscribe messaging system. It is a distributed, partitioned and replicated commit log service.
 
+-> Kafka maintains feeds of messages in categories called topics.
+-> Processes that publish messages to a kafka topic are called producers.
+-> Processes that subscribe to topics and read the message feed are called consumers.
+-> Kafka is configured on a cluster of 1 or more servers where each one acts as a broker.
+Communication between client and server (brokers) is using TCP protocol.
+
+Topic:
+A topic is a category or feed name to which messages are published. For each topic, kafka cluster maintains a 
+partitioned log.
+
+  
+
