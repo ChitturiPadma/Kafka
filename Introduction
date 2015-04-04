@@ -11,5 +11,18 @@ Topic:
 A topic is a category or feed name to which messages are published. For each topic, kafka cluster maintains a 
 partitioned log.
 
+Each partition is ordered and immutable which is continuously appended to a commit log. The messages in partitions 
+are each assigned a sequential id to uniquely identify the message.
+The Kafka cluster retains all published messages (whether or not consumed) for a configurable period of time.
+Although kafka retains lots of data, performance is constant. 
+The metadata retained on a consumer basis is the position of the consumer called the 'offset'. This offset is
+controlled by the consumer and can consume messages in any order it likes.
+
+The partitions of a topic allow to scale beyond a single server. A topic can have many partitions. Each partition
+is replicated across a configurable number of servers for fault tolerance.
+
+Every partition has 1 server which acts as leader and zero or more servers act as followers. The leader handles all
+the reads and write requests where as the followers replicate the leader. If leader fails, one of the follower
+automatically becomes the new leader. Each server acts as leader for some of its partitions and follower for others
   
 
