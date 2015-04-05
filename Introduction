@@ -25,4 +25,12 @@ Every partition has 1 server which acts as leader and zero or more servers act a
 the reads and write requests where as the followers replicate the leader. If leader fails, one of the follower
 automatically becomes the new leader. Each server acts as leader for some of its partitions and follower for others
   
+Producers: They publish data to topics of their choice. The messages are assigned to partitions within the topic 
+in a round-robin-fashion to balance load or could be done according to some function based on the key of the 
+message.
+
+Consumers: There are 2 models: queuing and publish-subscribe. In a queue, a poool of consumers read from a server
+and each message goes to one of them. In publish-subscribe, message is broadcasted to all the consumers.
+
+
 
