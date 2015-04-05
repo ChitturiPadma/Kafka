@@ -29,8 +29,25 @@ Producers: They publish data to topics of their choice. The messages are assigne
 in a round-robin-fashion to balance load or could be done according to some function based on the key of the 
 message.
 
-Consumers: There are 2 models: queuing and publish-subscribe. In a queue, a poool of consumers read from a server
+Consumers: There are 2 models: queuing and publish-subscribe. In a queue, a pool of consumers read from a server
 and each message goes to one of them. In publish-subscribe, message is broadcasted to all the consumers.
+Consumers label themselves with a consumer group name and each message publichsed to a topic is delivered to one
+consumer instance within each subscribing consumer group. consumer instances can be in separate processes or on 
+separate machines.
+
+kafka has stronger ordering gurantees than a traditional messaging system too.If there are multiple consumers, the
+messages are delivered asynchronously to consumers. Ordering is also achieved by assigning partitions in the topic 
+to consumers in the consumer group (each partition is consumed by exactly one consumer in the group).
+
+No.of consumer instances cannot be more than partitions.
+Guarantees: For a topic with replication factor N, up to N-1 server failures can be tolerated without losing 
+any messages committed to the log.
+
+Commit Log:
+Kafka can serve as a kind of external commit-log for a distributed system. 
+The log helps replicate data between nodes and acts as a re-syncing mechanism for failed nodes to restore their 
+data. The log compaction feature in Kafka helps support this usage. In this usage Kafka is similar to 
+Apache BookKeeper project.
 
 
 
